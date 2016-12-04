@@ -1,0 +1,4 @@
+How to build:
+        $iverilog -o result xxx.v xxx.v [...etc]
+	$vvp result	// this will generate vcd file
+	open GTK-Wave to debug
