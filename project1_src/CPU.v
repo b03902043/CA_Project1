@@ -63,6 +63,7 @@ shiftLeft2_26 shiftLeft2_26(
 PC PC(
     .clk_i      (clk_w),
     .start_i    (start_i),
+    .PCWrite_i  (HazardDetection.PCWrite_o),
     .pc_i       (MUX_2.data_o),
     .pc_o       (inst_addr)
 );
@@ -164,7 +165,7 @@ HazardDetection HazardDetection(
 	.IDEX_MemRead_i     (EX_M[1]),
 	.IDEX_RegisterRt_i  (EX_Rt),
 	.instr_i            (inst),
-	.PCWrite_o          (PC),
+	.PCWrite_o          (PC.PCWrite_i),
 	.IFIDWrite_o        (IF_ID.IFIDWrite_i),
 	.MUX8_o             (MUX_8.select_i)
 );
