@@ -1,4 +1,5 @@
-module HazardDetection(
+module HazardDetection
+(
 	clk_i,
 	IDEX_MemRead_i,
 	IDEX_RegisterRt_i,
@@ -8,11 +9,11 @@ module HazardDetection(
 	MUX8_o
 );
 
-input		clk_i;
-input	[1:0]	IDEX_MemRead_i;
-input	[4:0]	IDEX_RegisterRt_i;
-input	[31:0]	instr_i;
-output		PCWrite_o, IFIDWrite_o, MUX8_o;
+input			clk_i;
+input		[1:0]	IDEX_MemRead_i;
+input		[4:0]	IDEX_RegisterRt_i;
+input		[31:0]	instr_i;
+output reg		PCWrite_o, IFIDWrite_o, MUX8_o;
 
 always@(posedge clk_i)begin
 	if(IDEX_MemRead_i && 
@@ -22,3 +23,5 @@ always@(posedge clk_i)begin
 		IFIDWrite_o = 1'b1;
 	end
 end
+
+endmodule
