@@ -17,6 +17,7 @@ wire    [1:0]       EX_M;
 wire    [4:0]       EX_Rt;
 wire    [31:0]      ID_addr, EX_extend, ID_rs, ID_rt, mux1Out;
 wire                Eq_flag;
+wire    [7:0]       MUX8_data;
 
 // tree's section
 wire                branch_flagT;
@@ -45,7 +46,7 @@ Adder Add_PC(
 );
 
 Adder ADD(
-    .data1_in   (shiftLeft2.data_o),
+    .data1_in   (shiftLeft2_32.data_o),
     .data2_in   (ID_addr),
     .data_o     (MUX_1.data2_i)
 );
@@ -86,7 +87,7 @@ Registers Registers(
 
 MUX32 MUX_1(
     .data1_i    (Add_pc_o),
-    .data2_i    (Add.data_o),
+    .data2_i    (ADD.data_o),
     .select_i   (branch_flag),
     .data_o     (mux1Out)
 );
