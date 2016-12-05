@@ -1,7 +1,6 @@
 module ID_EX
 (
 	clk_i,
-	instr05_i,
 	instr1115_i,
 	instr1620_MUX_i,
 	instr1620_FW_i,
@@ -12,7 +11,6 @@ module ID_EX
 	ctrl_WB_i,
 	ctrl_M_i,
 	ctrl_EX_i,
-	func_o,
 	instr1115_o,
 	instr1620_MUX_o,
 	instr1620_FW_o,
@@ -28,13 +26,11 @@ module ID_EX
 );
 
 input			clk_i;
-input		[5:0]	instr05_i;
 input		[4:0]	instr1115_i, instr1620_MUX_i, instr1620_FW_i, instr2125_i;
 input		[31:0]	sign_extend_i, RS_data_i, RT_data_i;
 input		[1:0]	ctrl_WB_i;
 input		[1:0]	ctrl_M_i;
 input		[3:0]	ctrl_EX_i;
-output reg	[5:0]	func_o;
 output reg	[4:0]	instr1115_o, instr1620_MUX_o, instr1620_FW_o, instr2125_o;
 output reg	[31:0]	sign_extend_o, RS_data_o, RT_data_o;
 output reg	[1:0]	ctrl_WB_o;
@@ -43,7 +39,6 @@ output reg	[1:0]	ALUOp_o;
 output reg		ALUSrc_o, RegDst_o;
 
 always@(negedge clk_i) begin
-	func_o <= instr05_i;
 	instr1115_o <= instr1115_i;
 	instr1620_MUX_o <= instr1620_MUX_i;
 	instr1620_FW_o <= instr1620_FW_i;
