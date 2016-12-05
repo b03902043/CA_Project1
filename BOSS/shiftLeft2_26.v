@@ -6,8 +6,8 @@ module shiftLeft2_26
 
 // Interface
 input   [25:0]      data_i;
-output  [25:0]      data_o;
+output  [27:0]      data_o;
 
-assign  data_o = data_i>>2;  
+assign  data_o = data_i<<2;  
 
 endmodule
