@@ -1,13 +1,11 @@
 module CPU
 (
-    clk_i, 
-    rst_i,
+    clk_i,
     start_i
 );
 
 // Ports
 input               clk_i;
-input               rst_i;
 input               start_i;
 
 
@@ -54,17 +52,16 @@ Adder ADD(
 
 shiftLeft2_32 shiftLeft2_32(
     .data_i    (extended),
-    .data_o    (ADD.data1_in),
+    .data_o    (ADD.data1_in)
 );
 
 shiftLeft2_26 shiftLeft2_26(
     .data_i    (inst[25:0]),
-    .data_o    (JUMP_Addr[27:0]),
+    .data_o    (JUMP_Addr[27:0])
 );
 
 PC PC(
     .clk_i      (clk_w),
-    .rst_i      (rst_i),
     .start_i    (start_i),
     .pc_i       (MUX_2.data_o),
     .pc_o       (inst_addr)
@@ -175,7 +172,7 @@ HazardDetection HazardDetection(
 IF_ID IF_ID(
 	.clk_i          (clk_i),
 	.addr_i         (Add_pc_o),
-	.instr_i        (Instruction_Memory.),
+	.instr_i        (Instruction_Memory.instr_o),
 	.IFIDWrite_i    (HazardDetection.IFIDWrite_o),
 	.flush_i        (flush),
 	.addr_o         (ID_addr),
