@@ -3,7 +3,7 @@
 module TestBench;
 
 reg                Clk;
-reg                Start;
+reg                Start, Reset;
 integer            i, outfile, counter;
 integer            stall, flush;
 
@@ -11,6 +11,7 @@ always #(`CYCLE_TIME/2) Clk = ~Clk;
 
 CPU CPU(
     .clk_i  (Clk),
+    .rst_i  (Reset),
     .start_i(Start)
 );
   
@@ -33,6 +34,11 @@ initial begin
     for(i=0; i<32; i=i+1) begin
         CPU.Registers.register[i] = 32'b0;
     end
+
+    CPU.Control.jump = 0;
+    CPU.Control.branch = 0;
+    CPU.HazardDetection.IFIDWrite_o = 0;
+    CPU.HazardDetection.PCWrite_o = 0;
     
     // Load instructions into instruction memory
     $readmemb("instruction.txt", CPU.Instruction_Memory.memory);
@@ -42,13 +48,16 @@ initial begin
     
     // Set Input n into data memory at 0x00
     CPU.DataMemory.memory[0] = 32'h5;       // n = 5 for example
+
+    $dumpfile("result.vcd");
+    $dumpvars;
     
     Clk = 1;
-    //Reset = 0;
+    Reset = 0;
     Start = 0;
     
     #(`CYCLE_TIME/4) 
-    //Reset = 1;
+    Reset = 1;
     Start = 1;
         
     

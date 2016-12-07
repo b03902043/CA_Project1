@@ -1,11 +1,13 @@
 module CPU
 (
     clk_i,
+    rst_i,
     start_i
 );
 
 // Ports
 input               clk_i;
+input               rst_i;
 input               start_i;
 
 
@@ -63,6 +65,7 @@ shiftLeft2_26 shiftLeft2_26(
 
 PC PC(
     .clk_i      (clk_w),
+    .rst_i      (rst_i),
     .start_i    (start_i),
     .PCWrite_i  (HazardDetection.PCWrite_o),
     .pc_i       (MUX_2.data_o),
