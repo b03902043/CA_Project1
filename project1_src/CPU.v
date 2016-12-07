@@ -24,7 +24,7 @@ wire    [7:0]       MUX8_data;
 // tree's section
 wire                branch_flagT, memWrite, memRead;
 wire    [1:0]       WB_memState, WB_WBState;
-wire    [4:0]       MEM_mux3, WB_mux3, IERt, IERs;
+wire    [4:0]       MEM_mux3, WB_mux3, IERt, IERs, mux7Write;
 wire    [7:0]       cm8;
 // BOSS's section
 wire    [31:0]      extended, MEM_ALUOut, Add_pc_o, MUX_5Out, MUX_7Out, JUMP_Addr, am1;
@@ -220,7 +220,7 @@ EX_MEM EX_MEM(
 	.MEM_i       (EX_M),
 	.WB_o        (WB_memState),
 	.ALUOut_o    (MEM_ALUOut),        // connect MEM_ALUOut to mux6 , mux7 's input
-	.mux7_o      (DataMemory.WriteData_i),
+	.mux7_o      (mux7Write),
 	.mux3_o      (MEM_mux3),
 	.MemRead_o   (memRead),
 	.MemWrite_o  (memWrite)
@@ -242,7 +242,7 @@ DataMemory DataMemory(
     .memRead_i     (memRead),
     .memWrite_i    (memWrite),
     .ALUOut_i      (MEM_ALUOut),    // Address
-    .WriteData_i   (EX_MEM.mux7_o),              // 
+    .WriteData_i   (mux7Write),              // 
     .ReadData_o    (MEM_WB.ReadData_i)    // 32bit
 );
 
