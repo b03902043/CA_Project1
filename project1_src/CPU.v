@@ -240,6 +240,7 @@ MEM_WB MEM_WB(
 );
 
 DataMemory DataMemory(
+    .clk_i         (clk_i),
     .memRead_i     (memRead),
     .memWrite_i    (memWrite),
     .ALUOut_i      (MEM_ALUOut),    // Address

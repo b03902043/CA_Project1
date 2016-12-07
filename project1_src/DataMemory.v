@@ -1,4 +1,5 @@
 module DataMemory(
+	clk_i,
 	memRead_i,
 	memWrite_i,
 	ALUOut_i,
@@ -6,6 +7,7 @@ module DataMemory(
 	ReadData_o
 );
 
+input			clk_i;
 input 			memRead_i;
 input			memWrite_i;
 input	[31:0]		ALUOut_i;
@@ -16,11 +18,11 @@ reg	[31:0]		memory	[0:31];
 reg	[31:0]		ReadData_o;
 
 
-always@ (*)	
+always@ (posedge clk_i or negedge clk_i)	
 begin
-	if(memWrite_i)
+	if(memWrite_i && ~clk_i)
 		memory[ALUOut_i] <= WriteData_i;
-	else if(memRead_i)
+	else if(memRead_i && clk_i)
 		ReadData_o <= memory[ALUOut_i];
 	else;
 end
