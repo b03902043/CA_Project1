@@ -112,8 +112,8 @@ MUX5 MUX_3(
 );
 
 MUX32 MUX_4(
-    .data1_i    (EX_extend),   // 0
-    .data2_i    (MUX_7Out),    // 1
+    .data1_i    (MUX_7Out),   // 0
+    .data2_i    (EX_extend),    // 1
     .select_i   (ID_EX.ALUSrc_o),
     .data_o     (mux4ALU)
 );
