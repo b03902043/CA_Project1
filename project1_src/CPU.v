@@ -15,7 +15,7 @@ wire    [31:0]      inst_addr, inst;
 wire                clk_w;
 // SP's section
 wire                branch_flag, jump_flag, flush, IFIDWrite, PCWrite, HazardMUX_8;
-wire    [1:0]       EX_M;
+wire    [1:0]       EX_M, EX_WB;
 wire    [4:0]       EX_Rt;
 wire    [31:0]      ID_addr, EX_extend, ID_rs, ID_rt, mux1Out, mux6ALU, mux4ALU;
 wire                Eq_flag;
@@ -204,7 +204,7 @@ ID_EX ID_EX(
 	.sign_extend_o      (EX_extend),
 	.RS_data_o          (MUX_6.data1_i),
 	.RT_data_o          (MUX_7.data1_i),
-	.ctrl_WB_o          (EX_MEM.WB_i),
+	.ctrl_WB_o          (EX_WB),
 	.ctrl_M_o           (EX_M),
 	.ALUSrc_o           (MUX_4.select_i),
 	.ALUOp_o            (ALU_Control.ALUOp_i),
@@ -213,7 +213,7 @@ ID_EX ID_EX(
 
 EX_MEM EX_MEM(
     .clk_i       (clk_i),
-	.WB_i        (ID_EX.ctrl_WB_o),
+	.WB_i        (EX_WB),
 	.ALUOut_i    (ALU.data_o),
 	.mux7_i      (MUX_7Out),
 	.mux3_i      (MUX_3.data_o),
