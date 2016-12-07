@@ -10,7 +10,7 @@ module HazardDetection
 );
 
 input			clk_i;
-input		[1:0]	IDEX_MemRead_i;
+input			IDEX_MemRead_i;
 input		[4:0]	IDEX_RegisterRt_i;
 input		[31:0]	instr_i;
 output reg		PCWrite_o, IFIDWrite_o, MUX8_o;
