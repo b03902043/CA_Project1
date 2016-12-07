@@ -21,6 +21,7 @@ always@(*) begin
 	case(data_in[31:26])
 		6'b000000:	data_out <= 8'b10000001;	//R-type
 		6'b001101:	data_out <= 8'b10001010;	//ori
+		6'b001000:	data_out <= 8'b10001100;	//addi
 		6'b100011:	data_out <= 8'b11101100;	//lw
 		6'b101011:	data_out <= 8'b00011100; 	//sw
 		6'b000100:	begin	
