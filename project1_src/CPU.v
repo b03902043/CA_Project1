@@ -17,7 +17,7 @@ wire                clk_w;
 wire                branch_flag, jump_flag, flush, IFIDWrite, PCWrite, HazardMUX_8;
 wire    [1:0]       EX_M;
 wire    [4:0]       EX_Rt;
-wire    [31:0]      ID_addr, EX_extend, ID_rs, ID_rt, mux1Out;
+wire    [31:0]      ID_addr, EX_extend, ID_rs, ID_rt, mux1Out, mux6ALU, mux4ALU;
 wire                Eq_flag;
 wire    [7:0]       MUX8_data;
 
@@ -114,7 +114,7 @@ MUX32 MUX_4(
     .data1_i    (EX_extend),   // 0
     .data2_i    (MUX_7Out),    // 1
     .select_i   (ID_EX.ALUSrc_o),
-    .data_o     (ALU.data2_i)
+    .data_o     (mux4ALU)
 );
 
 MUX32 MUX_5(
@@ -129,7 +129,7 @@ MUX3 MUX_6(
     .data2_i    (MUX_5Out),        // 01
     .data3_i    (MEM_ALUOut),      // 10
     .select_i   (ForwardingUnit.ForwardA_o),
-    .data_o     (ALU.data1_i)
+    .data_o     (mux6ALU)
 );
 
 MUX3 MUX_7(
@@ -153,8 +153,8 @@ Sign_Extend Sign_Extend(
 );
   
 ALU ALU(
-    .data1_i    (MUX_6.data_o),        //上面那支
-    .data2_i    (MUX_4.data_o),        //下面那支
+    .data1_i    (mux6ALU),        //上面那支
+    .data2_i    (mux4ALU),        //下面那支
     .ALUCtrl_i  (ALU_Control.ALUCtrl_o),
     .data_o     (EX_MEM.ALUOut_i)
 );
