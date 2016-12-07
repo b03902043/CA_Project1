@@ -47,6 +47,7 @@ always@(posedge clk_i) begin
 	RS_data_o <= RS_data_i;
 	RT_data_o <= RT_data_i;
 	ctrl_WB_o <= ctrl_WB_i;
+	ctrl_M_o <= ctrl_M_i;
 	RegDst_o <= ctrl_EX_i[0];
 	ALUOp_o <= ctrl_EX_i[2:1];
 	ALUSrc_o <= ctrl_EX_i[3];
