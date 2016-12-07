@@ -14,7 +14,7 @@ input               start_i;
 wire    [31:0]      inst_addr, inst;
 wire                clk_w;
 // SP's section
-wire                branch_flag, jump_flag, flush, IFIDWrite;
+wire                branch_flag, jump_flag, flush, IFIDWrite, PCWrite, HazardMUX_8;
 wire    [1:0]       EX_M;
 wire    [4:0]       EX_Rt;
 wire    [31:0]      ID_addr, EX_extend, ID_rs, ID_rt, mux1Out;
@@ -24,9 +24,10 @@ wire    [7:0]       MUX8_data;
 // tree's section
 wire                branch_flagT;
 wire    [1:0]       WB_memState, WB_WBState;
-wire    [4:0]       MEM_mux3, WB_mux3;
+wire    [4:0]       MEM_mux3, WB_mux3, IERt, IERs;
+wire    [7:0]       cm8;
 // BOSS's section
-wire    [31:0]      extended, MEM_ALUOut, Add_pc_o, MUX_5Out, MUX_7Out, JUMP_Addr;
+wire    [31:0]      extended, MEM_ALUOut, Add_pc_o, MUX_5Out, MUX_7Out, JUMP_Addr, am1;
 
 assign  clk_w = clk_i;
 assign  JUMP_Addr[31:28] = mux1Out[31:28];
@@ -36,7 +37,7 @@ assign  flush = jump_flag | branch_flag;
 
 Control Control(
     .data_in    (inst),
-    .data_out   (MUX_8.data1_i),
+    .data_out   (cm8),
     .branch     (branch_flagT),
     .jump       (jump_flag)
 );
@@ -50,7 +51,7 @@ Adder Add_PC(
 Adder ADD(
     .data1_in   (shiftLeft2_32.data_o),
     .data2_in   (ID_addr),
-    .data_o     (MUX_1.data2_i)
+    .data_o     (am1)
 );
 
 shiftLeft2_32 shiftLeft2_32(
@@ -67,7 +68,7 @@ PC PC(
     .clk_i      (clk_w),
     .rst_i      (rst_i),
     .start_i    (start_i),
-    .PCWrite_i  (HazardDetection.PCWrite_o),
+    .PCWrite_i  (PCWrite),
     .pc_i       (MUX_2.data_o),
     .pc_o       (inst_addr)
 );
@@ -90,7 +91,7 @@ Registers Registers(
 
 MUX32 MUX_1(
     .data1_i    (Add_pc_o),
-    .data2_i    (ADD.data_o),
+    .data2_i    (am1),
     .select_i   (branch_flag),
     .data_o     (mux1Out)
 );
@@ -140,9 +141,9 @@ MUX3 MUX_7(
 );
 
 MUX8 MUX_8(
-    .data1_i    (Control.data_out),
+    .data1_i    (cm8),
     .data2_i    (8'b0),
-    .select_i   (HazardDetection.MUX8_o),
+    .select_i   (HazardMUX_8),
     .data_o     (MUX8_data)
 );
 
@@ -169,9 +170,9 @@ HazardDetection HazardDetection(
 	.IDEX_MemRead_i     (EX_M[1]),
 	.IDEX_RegisterRt_i  (EX_Rt),
 	.instr_i            (inst),
-	.PCWrite_o          (PC.PCWrite_i),
+	.PCWrite_o          (PCWrite),
 	.IFIDWrite_o        (IFIDWrite),
-	.MUX8_o             (MUX_8.select_i)
+	.MUX8_o             (HazardMUX_8)
 );
 
 IF_ID IF_ID(
@@ -198,8 +199,8 @@ ID_EX ID_EX(
 	.ctrl_EX_i          (MUX8_data[3:0]),
 	.instr1115_o        (MUX_3.data1_i),
 	.instr1620_MUX_o    (EX_Rt),
-	.instr1620_FW_o     (ForwardingUnit.ID_EX_RegRt),
-	.instr2125_o        (ForwardingUnit.ID_EX_RegRs),
+	.instr1620_FW_o     (IERt),
+	.instr2125_o        (IERs),
 	.sign_extend_o      (EX_extend),
 	.RS_data_o          (MUX_6.data1_i),
 	.RT_data_o          (MUX_7.data1_i),
@@ -246,8 +247,8 @@ DataMemory DataMemory(
 );
 
 ForwardingUnit ForwardingUnit(
-	.ID_EX_RegRs         (ID_EX.instr2125_o),
-	.ID_EX_RegRt         (ID_EX.instr1620_FW_o),
+	.ID_EX_RegRs         (IERs),
+	.ID_EX_RegRt         (IERt),
 	.EX_MEM_regWrite_i   (WB_memState[1]),
 	.EX_MEM_RegRd_i      (MEM_mux3),
 	.MEM_WB_regWrite_i   (WB_WBState[1]),
