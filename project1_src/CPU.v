@@ -105,8 +105,8 @@ MUX32 MUX_2(
 );
 
 MUX5 MUX_3(
-    .data1_i    (ID_EX.instr1115_o),
-    .data2_i    (EX_Rt),
+    .data1_i    (EX_Rt),
+    .data2_i    (ID_EX.instr1115_o),
     .select_i   (ID_EX.RegDst_o),
     .data_o     (mux3EXMEM)
 );
@@ -198,7 +198,7 @@ ID_EX ID_EX(
 	.ctrl_WB_i          (MUX8_data[7:6]),
 	.ctrl_M_i           (MUX8_data[5:4]),
 	.ctrl_EX_i          (MUX8_data[3:0]),
-	.instr1115_o        (MUX_3.data1_i),
+	.instr1115_o        (MUX_3.data2_i),
 	.instr1620_MUX_o    (EX_Rt),
 	.instr1620_FW_o     (IERt),
 	.instr2125_o        (IERs),
