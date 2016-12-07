@@ -156,7 +156,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -167,7 +167,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =           8, Start = 1, Stall =           0, Flush =           0
-PC =         32
+PC =         28
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -177,7 +177,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -188,7 +188,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =           9, Start = 1, Stall =           0, Flush =           0
-PC =         36
+PC =         32
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -198,7 +198,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -209,7 +209,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          10, Start = 1, Stall =           0, Flush =           0
-PC =         40
+PC =         36
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -219,7 +219,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -230,7 +230,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          11, Start = 1, Stall =           0, Flush =           0
-PC =         44
+PC =         40
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -240,7 +240,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -251,7 +251,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          12, Start = 1, Stall =           0, Flush =           0
-PC =         48
+PC =         44
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -261,7 +261,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -272,7 +272,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          13, Start = 1, Stall =           0, Flush =           0
-PC =         52
+PC =         48
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -282,7 +282,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -293,7 +293,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          14, Start = 1, Stall =           0, Flush =           0
-PC =         56
+PC =         52
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -303,7 +303,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -314,7 +314,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          15, Start = 1, Stall =           0, Flush =           0
-PC =         60
+PC =         56
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -324,7 +324,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -335,7 +335,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          16, Start = 1, Stall =           0, Flush =           0
-PC =         64
+PC =         60
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -345,7 +345,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -356,7 +356,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          17, Start = 1, Stall =           0, Flush =           0
-PC =         68
+PC =         64
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -366,7 +366,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -377,7 +377,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          18, Start = 1, Stall =           0, Flush =           0
-PC =         72
+PC =         68
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -387,7 +387,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -398,7 +398,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          19, Start = 1, Stall =           0, Flush =           0
-PC =         76
+PC =         72
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -408,7 +408,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -419,7 +419,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          20, Start = 1, Stall =           0, Flush =           0
-PC =         80
+PC =         76
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -429,7 +429,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -440,7 +440,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          21, Start = 1, Stall =           0, Flush =           0
-PC =         84
+PC =         80
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -450,7 +450,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -461,7 +461,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          22, Start = 1, Stall =           0, Flush =           0
-PC =         88
+PC =         84
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -471,7 +471,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -482,7 +482,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          23, Start = 1, Stall =           0, Flush =           0
-PC =         92
+PC =         88
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -492,7 +492,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -503,7 +503,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          24, Start = 1, Stall =           0, Flush =           0
-PC =         96
+PC =         92
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -513,7 +513,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -524,7 +524,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          25, Start = 1, Stall =           0, Flush =           0
-PC =        100
+PC =         96
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -534,7 +534,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -545,7 +545,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          26, Start = 1, Stall =           0, Flush =           0
-PC =        104
+PC =        100
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -555,7 +555,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -566,7 +566,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          27, Start = 1, Stall =           0, Flush =           0
-PC =        108
+PC =        104
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -576,7 +576,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -587,7 +587,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          28, Start = 1, Stall =           0, Flush =           0
-PC =        112
+PC =        108
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -597,7 +597,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0
@@ -608,7 +608,7 @@ Data Memory: 0x1c =                                       0
 
 
 cycle =          29, Start = 1, Stall =           0, Flush =           0
-PC =        116
+PC =        112
 Registers
 R0(r0) =          0, R8 (t0) =          0, R16(s0) =          0, R24(t8) =          0
 R1(at) =          0, R9 (t1) =          0, R17(s1) =          0, R25(t9) =          0
@@ -618,7 +618,7 @@ R4(a0) =          0, R12(t4) =          0, R20(s4) =          0, R28(gp) =      
 R5(a1) =          0, R13(t5) =          0, R21(s5) =          0, R29(sp) =          0
 R6(a2) =          0, R14(t6) =          0, R22(s6) =          0, R30(s8) =          0
 R7(a3) =          0, R15(t7) =          0, R23(s7) =          0, R31(ra) =          0
-Data Memory: 0x00 =                                       5
+Data Memory: 0x00 =                                       0
 Data Memory: 0x04 =                                       0
 Data Memory: 0x08 =                                       0
 Data Memory: 0x0c =                                       0

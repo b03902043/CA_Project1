@@ -30,16 +30,16 @@ output reg			MemRead_o, MemWrite_o;
 //assign	ALUOut_o = ALUOut_i;
 //assign	mux7_o = mux7_i;
 //assign	mux3_o = mux3_i;
-//assign	MemRead_o = MEM_i[0];
-//assign	MemWrite_o = MEM_i[1];
+//assign	MemRead_o = MEM_i[1];
+//assign	MemWrite_o = MEM_i[0];
 
 always@( posedge clk_i ) begin
 	WB_o <= WB_i;
 	ALUOut_o <= ALUOut_i;
 	mux7_o <= mux7_i;
 	mux3_o <= mux3_i;
-	MemRead_o <= MEM_i[0];
-	MemWrite_o <= MEM_i[1];
+	MemRead_o <= MEM_i[1];
+	MemWrite_o <= MEM_i[0];
 end
 
 endmodule

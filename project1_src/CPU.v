@@ -85,7 +85,7 @@ Registers Registers(
     .RTaddr_i   (inst[20:16]),
     .RDaddr_i   (WB_mux3), 
     .RDdata_i   (MUX_5Out),
-    .RegWrite_i (WB_WBState[0]), 
+    .RegWrite_i (WB_WBState[1]), 
     .RSdata_o   (ID_rs), 
     .RTdata_o   (ID_rt) 
 );
