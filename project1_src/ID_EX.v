@@ -38,7 +38,7 @@ output reg	[1:0]	ctrl_M_o;
 output reg	[1:0]	ALUOp_o;
 output reg		ALUSrc_o, RegDst_o;
 
-always@(negedge clk_i) begin
+always@(posedge clk_i) begin
 	instr1115_o <= instr1115_i;
 	instr1620_MUX_o <= instr1620_MUX_i;
 	instr1620_FW_o <= instr1620_FW_i;

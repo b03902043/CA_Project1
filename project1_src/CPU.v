@@ -14,7 +14,7 @@ input               start_i;
 wire    [31:0]      inst_addr, inst;
 wire                clk_w;
 // SP's section
-wire                branch_flag, jump_flag, flush;
+wire                branch_flag, jump_flag, flush, IFIDWrite;
 wire    [1:0]       EX_M;
 wire    [4:0]       EX_Rt;
 wire    [31:0]      ID_addr, EX_extend, ID_rs, ID_rt, mux1Out;
@@ -170,7 +170,7 @@ HazardDetection HazardDetection(
 	.IDEX_RegisterRt_i  (EX_Rt),
 	.instr_i            (inst),
 	.PCWrite_o          (PC.PCWrite_i),
-	.IFIDWrite_o        (IF_ID.IFIDWrite_i),
+	.IFIDWrite_o        (IFIDWrite),
 	.MUX8_o             (MUX_8.select_i)
 );
 
@@ -178,7 +178,7 @@ IF_ID IF_ID(
 	.clk_i          (clk_i),
 	.addr_i         (Add_pc_o),
 	.instr_i        (Instruction_Memory.instr_o),
-	.IFIDWrite_i    (HazardDetection.IFIDWrite_o),
+	.IFIDWrite_i    (IFIDWrite),
 	.flush_i        (flush),
 	.addr_o         (ID_addr),
 	.instr_o        (inst)

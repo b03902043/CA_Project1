@@ -14,7 +14,7 @@ input		[31:0]	addr_i, instr_i;
 input			IFIDWrite_i, flush_i;
 output reg	[31:0]	addr_o, instr_o;
 
-always@(negedge clk_i) begin
+always@(posedge clk_i) begin
 	if(flush_i == 1) begin
 		addr_o <= addr_i;
 		instr_o <= 32'b0;
