@@ -24,9 +24,9 @@ assign memory_o = memory[0];
 always@ (*)	
 begin
 	if(memWrite_i && clk_i)
-		memory[ALUOut_i] = WriteData_i;
+		memory[ALUOut_i] <= WriteData_i;
 	else if(memRead_i && ~clk_i)
-		ReadData_o <= memory[ALUOut_i];
+		ReadData_o = memory[ALUOut_i];
 	else;
 end
 
