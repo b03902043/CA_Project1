@@ -119,8 +119,8 @@ MUX32 MUX_4(
 );
 
 MUX32 MUX_5(
-    .data1_i    (MEM_WB.ReadData_o),
-    .data2_i    (MEM_WB.immed_o),
+    .data1_i    (MEM_WB.immed_o),
+    .data2_i    (MEM_WB.ReadData_o),
     .select_i   (WB_WBState[0]),
     .data_o     (MUX_5Out)
 );
@@ -234,9 +234,9 @@ MEM_WB MEM_WB(
 	.mux3_i      (MEM_mux3),
 	.immed_i     (MEM_ALUOut),
 	.WB_o        (WB_WBState),
-	.ReadData_o  (MUX_5.data1_i),
+	.ReadData_o  (MUX_5.data2_i),
 	.mux3_o      (WB_mux3),	            // connect this to Forwarding Unit and xxx
-	.immed_o     (MUX_5.data2_i)
+	.immed_o     (MUX_5.data1_i)
 );
 
 DataMemory DataMemory(
