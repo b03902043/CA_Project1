@@ -16,13 +16,13 @@ wire                clk_w;
 // SP's section
 wire                branch_flag, jump_flag, flush, IFIDWrite, PCWrite, HazardMUX_8;
 wire    [1:0]       EX_M, EX_WB;
-wire    [4:0]       EX_Rt, mux3EXMEM;
+wire    [4:0]       EX_Rt;
 wire    [31:0]      ID_addr, EX_extend, ID_rs, ID_rt, mux1Out, mux6ALU, mux4ALU;
 wire                Eq_flag;
 wire    [7:0]       MUX8_data;
 
 // tree's section
-wire                branch_flagT;
+wire                branch_flagT, memWrite, memRead;
 wire    [1:0]       WB_memState, WB_WBState;
 wire    [4:0]       MEM_mux3, WB_mux3, IERt, IERs;
 wire    [7:0]       cm8;
@@ -107,7 +107,7 @@ MUX5 MUX_3(
     .data1_i    (ID_EX.instr1115_o),
     .data2_i    (EX_Rt),
     .select_i   (ID_EX.RegDst_o),
-    .data_o     (mux3EXMEM)
+    .data_o     (EX_MEM.mux3_i)
 );
 
 MUX32 MUX_4(
@@ -216,14 +216,14 @@ EX_MEM EX_MEM(
 	.WB_i        (EX_WB),
 	.ALUOut_i    (ALU.data_o),
 	.mux7_i      (MUX_7Out),
-	.mux3_i      (mux3EXMEM),
+	.mux3_i      (MUX_3.data_o),
 	.MEM_i       (EX_M),
 	.WB_o        (WB_memState),
 	.ALUOut_o    (MEM_ALUOut),        // connect MEM_ALUOut to mux6 , mux7 's input
 	.mux7_o      (DataMemory.WriteData_i),
 	.mux3_o      (MEM_mux3),
-	.MemRead_o   (DataMemory.memRead_i),
-	.MemWrite_o  (DataMemory.memWrite_i)
+	.MemRead_o   (memRead),
+	.MemWrite_o  (memWrite)
 );
 
 MEM_WB MEM_WB(
@@ -239,8 +239,8 @@ MEM_WB MEM_WB(
 );
 
 DataMemory DataMemory(
-    .memRead_i     (EX_MEM.MemRead_o),
-    .memWrite_i    (EX_MEM.MemWrite_o),
+    .memRead_i     (memRead),
+    .memWrite_i    (memWrite),
     .ALUOut_i      (MEM_ALUOut),    // Address
     .WriteData_i   (EX_MEM.mux7_o),              // 
     .ReadData_o    (MEM_WB.ReadData_i)    // 32bit
