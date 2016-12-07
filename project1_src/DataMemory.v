@@ -19,9 +19,9 @@ reg	[31:0]		ReadData_o;
 always@ (*)	
 begin
 	if(memWrite_i)
-		memory[ALUOut_i[15:0]] <= WriteData_i;
+		memory[ALUOut_i] <= WriteData_i;
 	else if(memRead_i)
-		ReadData_o <= memory[ALUOut_i[15:0]];
+		ReadData_o <= memory[ALUOut_i];
 	else;
 end
 
