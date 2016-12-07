@@ -29,7 +29,7 @@ output reg	[31:0]	ReadData_o, immed_o;
 //assign 			immed_o = immed_i;
 //assign			mux3_o = mux3_i;
 
-always@(posedge clk_i)	begin
+always@(negedge clk_i)	begin
 	WB_o <= WB_i;
 	ReadData_o <= ReadData_i;
 	immed_o <= immed_i;

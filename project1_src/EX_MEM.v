@@ -33,7 +33,7 @@ output reg			MemRead_o, MemWrite_o;
 //assign	MemRead_o = MEM_i[1];
 //assign	MemWrite_o = MEM_i[0];
 
-always@( posedge clk_i ) begin
+always@( negedge clk_i ) begin
 	WB_o <= WB_i;
 	ALUOut_o <= ALUOut_i;
 	mux7_o <= mux7_i;

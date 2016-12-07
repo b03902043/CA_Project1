@@ -245,7 +245,8 @@ DataMemory DataMemory(
     .memWrite_i    (memWrite),
     .ALUOut_i      (MEM_ALUOut),    // Address
     .WriteData_i   (mux7Write),              // 
-    .ReadData_o    (MEM_WB.ReadData_i)    // 32bit
+    .ReadData_o    (MEM_WB.ReadData_i),    // 32bit
+    .memory_o	   ()
 );
 
 ForwardingUnit ForwardingUnit(
