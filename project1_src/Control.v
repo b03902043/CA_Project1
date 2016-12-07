@@ -1,11 +1,13 @@
 module Control
 (
+	clk_i,
 	data_in,
 	data_out,
 	branch,
 	jump,
 );
 
+input			clk_i;
 input	[31:0]		data_in; 
 output	[7:0]		data_out;
 output			branch;
@@ -15,9 +17,9 @@ reg	[7:0]		data_out;
 reg			branch;
 reg			jump;
 
-always@(*) begin
-	branch <= 0;
-	jump <= 0;
+always@(posedge clk_i) begin
+	branch = 0;
+	jump = 0;
 	case(data_in[31:26])
 		6'b000000:	data_out <= 8'b10000001;	//R-type
 		6'b001101:	data_out <= 8'b10001010;	//ori
@@ -30,7 +32,7 @@ always@(*) begin
 		end
 		6'b000010:	begin	
 			data_out <= 8'b00000000;	//jump
-			jump = 1;
+			jump <= 1;
 		end
 	endcase
 end
