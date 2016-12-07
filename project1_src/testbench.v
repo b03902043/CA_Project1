@@ -41,12 +41,12 @@ initial begin
     CPU.HazardDetection.PCWrite_o = 0;
     
     // Load instructions into instruction memory
-    //$readmemb("Fibonacci_instruction.txt", CPU.Instruction_Memory.memory);
-    $readmemb("instruction.txt", CPU.Instruction_Memory.memory);
+    $readmemb("Fibonacci_instruction.txt", CPU.Instruction_Memory.memory);
+    //$readmemb("instruction.txt", CPU.Instruction_Memory.memory);
     
     // Open output file
-    //outfile = $fopen("Fibonacci_output.txt") | 1;
-    outfile = $fopen("output.txt") | 1;
+    outfile = $fopen("Fibonacci_output.txt") | 1;
+    //outfile = $fopen("output.txt") | 1;
     
     // Set Input n into data memory at 0x00
     CPU.DataMemory.memory[0] = 32'h5;       // n = 5 for example

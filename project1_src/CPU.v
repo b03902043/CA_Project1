@@ -37,6 +37,7 @@ assign  branch_flag = branch_flagT & Eq_flag;
 assign  flush = jump_flag | branch_flag;
 
 Control Control(
+    .clk_i	(clk_w),
     .data_in    (inst),
     .data_out   (cm8),
     .branch     (branch_flagT),
@@ -61,6 +62,7 @@ shiftLeft2_32 shiftLeft2_32(
 );
 
 shiftLeft2_26 shiftLeft2_26(
+	.clk_i     (clk_i),
     .data_i    (inst[25:0]),
     .data_o    (JUMP_Addr[27:0])
 );

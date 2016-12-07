@@ -22,6 +22,7 @@ always@ (funct_i or ALUOp_i)	begin
 					6'b011000:	aluCtrl_temp = 3'b111;	// *
 					6'b100100:	aluCtrl_temp = 3'b000;	// &
 					6'b100101:	aluCtrl_temp = 3'b001;	// |
+					default:	aluCtrl_temp = 3'b100;
 				endcase
 			end
 		2'b01:	// Or
