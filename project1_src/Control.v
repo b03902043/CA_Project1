@@ -30,7 +30,7 @@ always@(*) begin
 		end
 		6'b000010:	begin	
 			data_out <= 8'b00000000;	//jump
-			jump = 1;
+			jump <= 1;
 		end
 	endcase
 end

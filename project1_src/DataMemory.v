@@ -20,9 +20,9 @@ reg	[31:0]		ReadData_o;
 
 always@ (posedge clk_i or negedge clk_i)	
 begin
-	if(memWrite_i && ~clk_i)
+	if(memWrite_i && clk_i)
 		memory[ALUOut_i] <= WriteData_i;
-	else if(memRead_i && clk_i)
+	else if(memRead_i && ~clk_i)
 		ReadData_o <= memory[ALUOut_i];
 	else;
 end

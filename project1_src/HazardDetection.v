@@ -25,7 +25,7 @@ output reg		PCWrite_o, IFIDWrite_o, MUX8_o;
 		MUX8_o <= 1'b0;
 	end
 end*/
-always@(posedge clk_i)begin
+always@(negedge clk_i)begin
 	if(IDEX_MemRead_i && 
 	   (IDEX_RegisterRt_i == instr_i[25:21] ||
             IDEX_RegisterRt_i == instr_i[20:16]))begin
