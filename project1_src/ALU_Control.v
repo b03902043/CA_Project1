@@ -12,7 +12,7 @@ reg	[2:0]	aluCtrl_temp;
 
 assign	ALUCtrl_o = aluCtrl_temp;
 
-always@ (funct_i or ALUOp_i)	begin
+always@ (*)	begin
 	case(ALUOp_i)
 		2'b00:	// 	R-type
 			begin
@@ -22,7 +22,7 @@ always@ (funct_i or ALUOp_i)	begin
 					6'b011000:	aluCtrl_temp = 3'b111;	// *
 					6'b100100:	aluCtrl_temp = 3'b000;	// &
 					6'b100101:	aluCtrl_temp = 3'b001;	// |
-					default:	aluCtrl_temp = 3'b100;
+					default:	aluCtrl_temp = 3'b100;  // nop
 				endcase
 			end
 		2'b01:	// Or

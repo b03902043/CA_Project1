@@ -3,7 +3,7 @@
 module TestBench;
 
 reg                Clk;
-reg                Start, Reset;
+reg                Start;
 integer            i, outfile, counter;
 integer            stall, flush;
 
@@ -11,7 +11,6 @@ always #(`CYCLE_TIME/2) Clk = ~Clk;
 
 CPU CPU(
     .clk_i  (Clk),
-    .rst_i  (Reset),
     .start_i(Start)
 );
   
@@ -27,7 +26,7 @@ initial begin
     
     // initialize data memory
     for(i=0; i<32; i=i+1) begin
-        CPU.DataMemory.memory[i] = 32'b0;
+        CPU.DataMemory.memory[i] = 8'b0;
     end    
         
     // initialize Register File
@@ -35,43 +34,40 @@ initial begin
         CPU.Registers.register[i] = 32'b0;
     end
 
-    CPU.Control.jump = 0;
-    CPU.Control.branch = 0;
-    CPU.HazardDetection.IFIDWrite_o = 0;
-    CPU.HazardDetection.PCWrite_o = 0;
+    //CPU.Control.jump = 0;
+    //CPU.Control.branch = 0;
+    //CPU.HazardDetection.IFIDWrite_o = 0;
+    //CPU.HazardDetection.PCWrite_o = 0;
     
     // Load instructions into instruction memory
-    //$readmemb("Fibonacci_instruction.txt", CPU.Instruction_Memory.memory);
-    $readmemb("instruction.txt", CPU.Instruction_Memory.memory);
+    $readmemb("Fibonacci_instruction.txt", CPU.Instruction_Memory.memory);
+    //$readmemb("instruction.txt", CPU.Instruction_Memory.memory);
     
     // Open output file
-    //outfile = $fopen("Fibonacci_output.txt") | 1;
-    outfile = $fopen("output.txt") | 1;
+    outfile = $fopen("Fibonacci_output.txt") | 1;
+    //outfile = $fopen("output.txt") | 1;
     
     // Set Input n into data memory at 0x00
-    CPU.DataMemory.memory[0] = 32'h5;       // n = 5 for example
+    CPU.DataMemory.memory[0] = 8'h5;       // n = 5 for example
 
     $dumpfile("result.vcd");
     $dumpvars;
     
-    Clk = 1;
-    Reset = 0;
+    Clk = 0;
     Start = 0;
     
     #(`CYCLE_TIME/4) 
-    Reset = 1;
     Start = 1;
-        
     
 end
   
-always@(posedge Clk) begin
-    if(counter == 30)    // stop after 30 cycles
+always@(negedge Clk) begin
+    if(counter == 70)    // stop after 70 cycles
         $stop;
 
     // put in your own signal to count stall and flush
-    // if(CPU.HazardDetection.MUX8_o == 1 && CPU.Control.jump == 0 && CPU.Control.branch == 0)stall = stall + 1;
-    // if(CPU.HazardDetection.IFIDWrite_o == 1)flush = flush + 1;  
+     if(CPU.HazardDetection.MUX8_o == 1 && CPU.Control.jump == 0 && CPU.Control.branch == 0)stall = stall + 1;
+     if(CPU.flush == 1)flush = flush + 1;  
 
     // print PC
     $fdisplay(outfile, "cycle = %d, Start = %d, Stall = %d, Flush = %d\nPC = %d", counter, Start, stall, flush, CPU.PC.pc_o);

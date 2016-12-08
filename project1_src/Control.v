@@ -1,13 +1,11 @@
 module Control
 (
-	clk_i,
 	data_in,
 	data_out,
 	branch,
 	jump,
 );
 
-input			clk_i;
 input	[31:0]		data_in; 
 output	[7:0]		data_out;
 output			branch;
@@ -17,7 +15,7 @@ reg	[7:0]		data_out;
 reg			branch;
 reg			jump;
 
-always@(posedge clk_i) begin
+always@(*) begin
 	branch = 0;
 	jump = 0;
 	case(data_in[31:26])

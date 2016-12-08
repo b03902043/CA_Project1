@@ -1,23 +1,20 @@
 module CPU
 (
     clk_i,
-    rst_i,
     start_i
 );
 
 // Ports
 input               clk_i;
-input               rst_i;
 input               start_i;
 
 
 wire    [31:0]      inst_addr, inst;
-wire                clk_w;
 // SP's section
 wire                branch_flag, jump_flag, flush, IFIDWrite, PCWrite, HazardMUX_8;
 wire    [1:0]       EX_M, EX_WB;
 wire    [4:0]       EX_Rt, mux3EXMEM;
-wire    [31:0]      ID_addr, EX_extend, ID_rs, ID_rt, mux1Out, mux6ALU, mux4ALU;
+wire    [31:0]      ID_addr, EX_extend, ID_rs, ID_rt, mux1Out, mux6ALU, mux4ALU, IF_inst, ALUresult;
 wire                Eq_flag;
 wire    [7:0]       MUX8_data;
 
@@ -30,14 +27,12 @@ wire	[31:0]	    mux7Write;
 // BOSS's section
 wire    [31:0]      extended, MEM_ALUOut, Add_pc_o, MUX_5Out, MUX_7Out, JUMP_Addr, am1;
 
-assign  clk_w = clk_i;
 assign  JUMP_Addr[31:28] = mux1Out[31:28];
 assign  Eq_flag = (ID_rs == ID_rt);
 assign  branch_flag = branch_flagT & Eq_flag;
 assign  flush = jump_flag | branch_flag;
 
 Control Control(
-    .clk_i	(clk_w),
     .data_in    (inst),
     .data_out   (cm8),
     .branch     (branch_flagT),
@@ -62,14 +57,12 @@ shiftLeft2_32 shiftLeft2_32(
 );
 
 shiftLeft2_26 shiftLeft2_26(
-	.clk_i     (clk_i),
     .data_i    (inst[25:0]),
     .data_o    (JUMP_Addr[27:0])
 );
 
 PC PC(
-    .clk_i      (clk_w),
-    .rst_i      (rst_i),
+    .clk_i      (clk_i),
     .start_i    (start_i),
     .PCWrite_i  (PCWrite),
     .pc_i       (MUX_2.data_o),
@@ -78,7 +71,7 @@ PC PC(
 
 Instruction_Memory Instruction_Memory(
     .addr_i     (inst_addr), 
-    .instr_o    (IF_ID.instr_i)
+    .instr_o    (IF_inst)
 );
 
 Registers Registers(
@@ -159,7 +152,7 @@ ALU ALU(
     .data1_i    (mux6ALU),        //上面那支
     .data2_i    (mux4ALU),        //下面那支
     .ALUCtrl_i  (ALU_Control.ALUCtrl_o),
-    .data_o     (EX_MEM.ALUOut_i)
+    .data_o     (ALUresult)
 );
 
 ALU_Control ALU_Control(
@@ -169,7 +162,6 @@ ALU_Control ALU_Control(
 );
 
 HazardDetection HazardDetection(
-	.clk_i              (clk_i),
 	.IDEX_MemRead_i     (EX_M[1]),
 	.IDEX_RegisterRt_i  (EX_Rt),
 	.instr_i            (inst),
@@ -181,7 +173,7 @@ HazardDetection HazardDetection(
 IF_ID IF_ID(
 	.clk_i          (clk_i),
 	.addr_i         (Add_pc_o),
-	.instr_i        (Instruction_Memory.instr_o),
+	.instr_i        (IF_inst),
 	.IFIDWrite_i    (IFIDWrite),
 	.flush_i        (flush),
 	.addr_o         (ID_addr),
@@ -217,7 +209,7 @@ ID_EX ID_EX(
 EX_MEM EX_MEM(
     .clk_i       (clk_i),
 	.WB_i        (EX_WB),
-	.ALUOut_i    (ALU.data_o),
+	.ALUOut_i    (ALUresult),
 	.mux7_i      (MUX_7Out),
 	.mux3_i      (mux3EXMEM),
 	.MEM_i       (EX_M),
