@@ -16,8 +16,8 @@ reg			branch;
 reg			jump;
 
 always@(*) begin
-	branch <= 0;
-	jump <= 0;
+	branch = 0;
+	jump = 0;
 	case(data_in[31:26])
 		6'b000000:	data_out <= 8'b10000001;	//R-type
 		6'b001101:	data_out <= 8'b10001010;	//ori
@@ -30,7 +30,7 @@ always@(*) begin
 		end
 		6'b000010:	begin	
 			data_out <= 8'b00000000;	//jump
-			jump = 1;
+			jump <= 1;
 		end
 	endcase
 end

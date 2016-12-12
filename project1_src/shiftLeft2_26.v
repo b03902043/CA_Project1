@@ -6,8 +6,11 @@ module shiftLeft2_26
 
 // Interface
 input   [25:0]      data_i;
-output  [27:0]      data_o;
+output reg  [27:0]      data_o;
 
-assign  data_o = data_i<<2;  
 
+always@ (*) 
+begin
+	  data_o <= ({{2{data_i[25]}}, data_i} << 2);  
+end
 endmodule

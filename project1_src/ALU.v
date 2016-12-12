@@ -25,6 +25,8 @@ always@	(*)	begin
 			result_temp = data1_i - data2_i;
 		3'b111:		// mul
 			result_temp = data1_i * data2_i;
+		3'b100:	        // nop
+			result_temp = 32'b0;
 	endcase
 end
 
