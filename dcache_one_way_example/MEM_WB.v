@@ -1,4 +1,5 @@
 module MEM_WB(
+	stall_i,
 	clk_i,
 	WB_i,
 	ReadData_i,
@@ -10,7 +11,7 @@ module MEM_WB(
 	immed_o
 );
 
-input			clk_i;
+input			clk_i, stall_i;
 input	[1:0]	WB_i;
 input	[4:0]	mux3_i;
 input	[31:0]	ReadData_i, immed_i;
@@ -30,10 +31,13 @@ output reg	[31:0]	ReadData_o, immed_o;
 //assign			mux3_o = mux3_i;
 
 always@(negedge clk_i)	begin
-	WB_o <= WB_i;
-	ReadData_o <= ReadData_i;
-	immed_o <= immed_i;
-	mux3_o <= mux3_i;
+	if(stall_i)	begin
+	end else begin
+		WB_o <= WB_i;
+		ReadData_o <= ReadData_i;
+		immed_o <= immed_i;
+		mux3_o <= mux3_i;
+	end
 end
 
 endmodule

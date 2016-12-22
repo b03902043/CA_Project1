@@ -1,4 +1,5 @@
 module EX_MEM(
+	stall_i,
 	clk_i,
 	WB_i,
 	ALUOut_i,
@@ -13,7 +14,7 @@ module EX_MEM(
 	MemWrite_o
 );
 
-input			clk_i;
+input			stall_i, clk_i;
 // MemToReg_i, RegWrite_i => WB_i    ;    MemRead_i, MemWrite_i, => MEM_i
 input	[1:0]	WB_i, MEM_i;	
 // mux7_i = RT (Forwarding or not)
@@ -34,12 +35,15 @@ output reg			MemRead_o, MemWrite_o;
 //assign	MemWrite_o = MEM_i[0];
 
 always@( negedge clk_i ) begin
-	WB_o <= WB_i;
-	ALUOut_o <= ALUOut_i;
-	mux7_o <= mux7_i;
-	mux3_o <= mux3_i;
-	MemRead_o <= MEM_i[1];
-	MemWrite_o <= MEM_i[0];
+	if(stall_i)	begin
+	end else begin
+		WB_o <= WB_i;
+		ALUOut_o <= ALUOut_i;
+		mux7_o <= mux7_i;
+		mux3_o <= mux3_i;
+		MemRead_o <= MEM_i[1];
+		MemWrite_o <= MEM_i[0];
+	end
 end
 
 endmodule

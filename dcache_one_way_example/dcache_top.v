@@ -1,4 +1,3 @@
-
 module dcache_top
 (
     // System clock, reset and stall
@@ -66,28 +65,28 @@ wire				sram_valid;
 wire				sram_dirty;
 
 // controller
-parameter 			STATE_IDLE			  = 3'h0,
-					      STATE_READMISS		= 3'h1,
-					      STATE_READMISSOK	= 3'h2,
-					      STATE_WRITEBACK		= 3'h3,
-					      STATE_MISS			  = 3'h4;
+parameter       STATE_IDLE		    = 3'h0,
+                STATE_READMISS		= 3'h1,
+                STATE_READMISSOK	= 3'h2,
+                STATE_WRITEBACK		= 3'h3,
+                STATE_MISS			= 3'h4;
 reg		[2:0]		state;
-reg					  mem_enable;
-reg					  mem_write;
-reg					  cache_we;
-wire				  cache_dirty;
-reg					  write_back;
+reg					mem_enable;
+reg				    mem_write;
+reg					cache_we;
+wire				cache_dirty;
+reg					write_back;
 
 // regs & wires
-wire	[4:0]		  p1_offset;
-wire	[4:0]		  p1_index;
+wire	[4:0]	    p1_offset;
+wire	[4:0]	    p1_index;
 wire	[21:0]		p1_tag;
 wire	[255:0]		r_hit_data;
 wire	[21:0]		sram_tag;
 wire				    hit;
 reg		[255:0]		w_hit_data;
-wire				    write_hit;
-wire				    p1_req;
+wire		        write_hit;
+wire                p1_req;
 reg		[31:0]		p1_data;
 
 // project1 interface
@@ -119,16 +118,27 @@ assign	cache_dirty  = write_hit;
 
 // tag comparator
 //!!! add you code here!  (hit=...?,  r_hit_data=...?)
-	
+assign    hit = (sram_valid && p1_tag == sram_tag)? 1'b1:1'b0;
+assign    r_hit_data = sram_cache_data;
+
 // read data :  256-bit to 32-bit
 always@(p1_offset or r_hit_data) begin
-	//!!! add you code here! (p1_data=...?)
+//!!! add you code here! (p1_data=...?)
+    p1_data = hit ? r_hit_data[(p1_offset>>2)*32+31:(p1_offset>>2)*32] : 32'b0;
 end
 
 
 // write data :  32-bit to 256-bit
 always@(p1_offset or r_hit_data or p1_data_i) begin
-	//!!! add you code here! (w_hit_data=...?)
+//!!! add you code here! (w_hit_data=...?)
+    w_hit_data={    p1_offset == 28 ? p1_data_i : r_hit_data[255:224],
+                    p1_offset == 24 ? p1_data_i : r_hit_data[223:192],
+                    p1_offset == 20 ? p1_data_i : r_hit_data[191:160],
+                    p1_offset == 16 ? p1_data_i : r_hit_data[159:128],
+                    p1_offset == 12 ? p1_data_i : r_hit_data[127: 96],
+                    p1_offset == 8  ? p1_data_i : r_hit_data[ 95: 64],
+                    p1_offset == 4  ? p1_data_i : r_hit_data[ 63: 32],
+                    p1_offset == 0  ? p1_data_i : r_hit_data[ 31:  0]};
 end
 
 
@@ -154,16 +164,24 @@ always@(posedge clk_i or negedge rst_i) begin
 			STATE_MISS: begin
 				if(sram_dirty) begin		//write back if dirty
 	                //!!! add you code here! 
+                    mem_enable<=1'b1;
+					mem_write <=1'b1;
+					write_back<=1'b1;
 					state <= STATE_WRITEBACK;
 				end
 				else begin					//write allocate: write miss = read miss + write hit; read miss = read miss + read hit
-	                //!!! add you code here! 
+	                //!!! add you code here!
+                    mem_enable<=1'b1;
+					mem_write<=1'b0;
+					write_back<=1'b0;
 					state <= STATE_READMISS;
 				end
 			end
 			STATE_READMISS: begin
 				if(mem_ack_i) begin			//wait for data memory acknowledge
 	                //!!! add you code here! 
+                    mem_enable<=1'b0;
+					cache_we<=1'b1;			
 					state <= STATE_READMISSOK;
 				end
 				else begin
@@ -172,11 +190,14 @@ always@(posedge clk_i or negedge rst_i) begin
 			end
 			STATE_READMISSOK: begin			//wait for data memory acknowledge
 	                //!!! add you code here! 
-				state <= STATE_IDLE;
+                    cache_we<=1'b0;
+				    state <= STATE_IDLE;
 			end
 			STATE_WRITEBACK: begin
 				if(mem_ack_i) begin			//wait for data memory acknowledge
 	                //!!! add you code here! 
+                    write_back<=1'b0;
+					mem_write <=1'b0;
 					state <= STATE_READMISS;
 				end
 				else begin
