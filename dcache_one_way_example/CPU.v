@@ -45,7 +45,7 @@ wire                branch_flagT, memWrite, memRead;
 wire    [1:0]       WB_memState, WB_WBState;
 wire    [4:0]       MEM_mux3, WB_mux3, IERt, IERs;
 wire    [7:0]       cm8;
-wire	[31:0]	    mux7Write;
+wire	[31:0]	    mux7Write, mpc2;
 wire                stall;
 
 // BOSS's section
@@ -96,7 +96,7 @@ MUX32 MUX_2(
     .data1_i    (mux1Out),
     .data2_i    (JUMP_Addr),
     .select_i   (jump_flag),
-    .data_o     (PC.pc_i)
+    .data_o    	(mpc2)
 );
 
 MUX5 MUX_3(
@@ -259,7 +259,7 @@ PC PC
 	.start_i	(start_i),
 	.stall_i	(stall),
 	.pcEnable_i	(~PCWrite),
-	.pc_i		(MUX_2.data_o),
+	.pc_i		(mpc2),
 	.pc_o		(inst_addr)
 );
 
