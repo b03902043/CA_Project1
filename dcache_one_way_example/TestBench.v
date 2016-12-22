@@ -91,7 +91,7 @@ initial begin
     
 end
   
-always@(posedge Clk) begin
+always@(negedge Clk) begin
 	if(counter == 150) begin	// store cache to memory
 		$fdisplay(outfile, "Flush Cache! \n");
 		for(i=0; i<32; i=i+1) begin
