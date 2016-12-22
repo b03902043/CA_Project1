@@ -1,7 +1,7 @@
 module PC
 (
 	clk_i,
-    rst_i,
+    	rst_i,
 	start_i,
 	stall_i,
 	pcEnable_i,
@@ -26,11 +26,8 @@ always@(negedge clk_i or negedge rst_i) begin
         pc_o <= 32'b0;
     end
     else begin
-    	if(stall_i) begin
-    	end
-    	else if(start_i)	begin
-    		if( pcEnable_i )
-    			pc_o <= pc_i;
+    	if(start_i && pcEnable_i && !stall_i)	begin
+    		pc_o <= pc_i;
     	end
     	else
     		pc_o <= 32'b0;

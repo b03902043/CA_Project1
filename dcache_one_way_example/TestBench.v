@@ -22,7 +22,7 @@ always #(`CYCLE_TIME/2) Clk = ~Clk;
 
 CPU CPU(
 	.clk_i  (Clk),
-    .rst_i  (Reset),
+    	.rst_i  (Reset),
 	.start_i(Start),
 	
 	.mem_data_i(mem_cpu_data), 
@@ -36,7 +36,7 @@ CPU CPU(
 Data_Memory Data_Memory
 (
 	.clk_i    (Clk),
-  .rst_i    (Reset),
+  	.rst_i    (Reset),
 	.addr_i   (cpu_mem_addr),
 	.data_i   (cpu_mem_data),
 	.enable_i (cpu_mem_enable),
@@ -71,6 +71,8 @@ initial begin
 	
 	// Load instructions into instruction memory
 	$readmemb("instruction.txt", CPU.Instruction_Memory.memory);
+	$dumpfile("test.vcd");
+	$dumpvars();
 	
 	// Open output file
 	outfile = $fopen("output.txt") | 1;
@@ -80,14 +82,14 @@ initial begin
 	// Set Input n into data memory at 0x00
 	Data_Memory.memory[0] = 256'h5;		// n = 5 for example
 	
-    Clk = 0;
-    Reset = 0;
-    Start = 0;
+    	Clk = 0;
+    	Reset = 0;
+    	Start = 0;
     
     #(`CYCLE_TIME/4) 
     Reset = 1;
     Start = 1;
-
+	
     
 end
   

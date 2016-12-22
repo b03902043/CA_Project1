@@ -42,11 +42,11 @@ output				    mem_write_o;
 //	
 input	[32-1:0]	p1_data_i; 
 input	[32-1:0]	p1_addr_i; 	
-input				    p1_MemRead_i; 
-input				    p1_MemWrite_i; 
+input			p1_MemRead_i; 
+input			p1_MemWrite_i; 
 
-output	[32-1:0]p1_data_o; 
-output				  p1_stall_o; 
+output	[32-1:0]	p1_data_o; 
+output			p1_stall_o; 
 
 //
 // to SRAM interface
@@ -90,12 +90,14 @@ wire                p1_req;
 reg		[31:0]		p1_data;
 reg 	[255:0]		i;
 
+integer			flag = 0;
+
 // project1 interface
 assign 	p1_req     = p1_MemRead_i | p1_MemWrite_i;
 assign	p1_offset  = p1_addr_i[4:0];
 assign	p1_index   = p1_addr_i[9:5];
 assign	p1_tag     = p1_addr_i[31:10];
-assign	p1_stall_o = ~hit & p1_req;
+assign	p1_stall_o = (flag < 6) ? 1'b0 : ~hit & p1_req ;
 assign	p1_data_o  = p1_data; 
 
 // SRAM interface
@@ -158,6 +160,7 @@ always@(posedge clk_i or negedge rst_i) begin
 		write_back <= 1'b0;
 	end
 	else begin
+		flag = flag +1 ;
 		case(state)		
 			STATE_IDLE: begin
 				if(p1_req && !hit) begin	//wait for request
