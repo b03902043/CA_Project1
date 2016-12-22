@@ -46,6 +46,8 @@ wire    [1:0]       WB_memState, WB_WBState;
 wire    [4:0]       MEM_mux3, WB_mux3, IERt, IERs;
 wire    [7:0]       cm8;
 wire	[31:0]	    mux7Write;
+wire                stall;
+
 // BOSS's section
 wire    [31:0]      extended, MEM_ALUOut, Add_pc_o, MUX_5Out, MUX_7Out, JUMP_Addr, am1;
 
@@ -169,6 +171,7 @@ HazardDetection HazardDetection(
 );
 
 IF_ID IF_ID(
+    .stall_i        (stall),
 	.clk_i          (clk_i),
 	.addr_i         (Add_pc_o),
 	.instr_i        (IF_inst),
@@ -179,6 +182,7 @@ IF_ID IF_ID(
 );
 
 ID_EX ID_EX(
+    .stall_i            (stall),
 	.clk_i              (clk_i),
 	.instr1115_i        (inst[15:11]),
 	.instr1620_MUX_i    (inst[20:16]),
@@ -205,6 +209,7 @@ ID_EX ID_EX(
 );
 
 EX_MEM EX_MEM(
+    .stall_i     (stall),
     .clk_i       (clk_i),
 	.WB_i        (EX_WB),
 	.ALUOut_i    (ALUresult),
@@ -220,9 +225,10 @@ EX_MEM EX_MEM(
 );
 
 MEM_WB MEM_WB(
+    .stall_i     (stall),
     .clk_i       (clk_i),
 	.WB_i        (WB_memState),
-	.ReadData_i  (DataMemory.ReadData_o),
+	.ReadData_i  (dcache.p1_data_o),
 	.mux3_i      (MEM_mux3),
 	.immed_i     (MEM_ALUOut),
 	.WB_o        (WB_WBState),
@@ -251,7 +257,7 @@ PC PC
 	.clk_i		(clk_i),
 	.rst_i		(rst_i),
 	.start_i	(start_i),
-	.stall_i	(),
+	.stall_i	(stall),
 	.pcEnable_i	(~PCWrite),
 	.pc_i		(MUX_2.data_o),
 	.pc_o		(inst_addr)
@@ -289,12 +295,12 @@ dcache_top dcache
 	.mem_write_o(mem_write_o), 
 	
 	// to CPU interface	
-	.p1_data_i(), 
-	.p1_addr_i(), 	
-	.p1_MemRead_i(), 
-	.p1_MemWrite_i(), 
-	.p1_data_o(), 
-	.p1_stall_o()
+	.p1_data_i(mux7Write), 
+	.p1_addr_i(MEM_ALUOut), 	
+	.p1_MemRead_i(memRead), 
+	.p1_MemWrite_i(memWrite), 
+	.p1_data_o(MEM_WB.ReadData_i), 
+	.p1_stall_o(stall)
 );
 
 endmodule
