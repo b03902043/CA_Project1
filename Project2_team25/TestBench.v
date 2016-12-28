@@ -71,8 +71,8 @@ initial begin
 	
 	// Load instructions into instruction memory
 	$readmemb("instruction.txt", CPU.Instruction_Memory.memory);
-	$dumpfile("test.vcd");
-	$dumpvars();
+	//$dumpfile("test.vcd");
+	//$dumpvars();
 	
 	// Open output file
 	outfile = $fopen("output.txt") | 1;
