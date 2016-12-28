@@ -23,7 +23,7 @@ reg		[255:0]		memory 			[0:31];
 
 
 // Write Data      
-always@(posedge clk_i) begin
+always@(negedge clk_i) begin
     if(enable_i && write_i) begin
 		memory[addr_i]   <= data_i;
 	end
