@@ -88,7 +88,7 @@ reg		[255:0]		w_hit_data;
 wire		        write_hit;
 wire                p1_req;
 reg		[31:0]		p1_data;
-reg 	[255:0]		i;
+integer  		    a;
 
 integer			flag = 0;
 
@@ -125,15 +125,21 @@ assign    hit = (sram_valid && p1_tag == sram_tag)? 1'b1:1'b0;
 assign    r_hit_data = sram_cache_data;
 
 // read data :  256-bit to 32-bit
+
+integer	ffff, eeee;
+
 always@(p1_offset or r_hit_data) begin
 //!!! add you code here! (p1_data=...?)
-//	if(hit)	begin
-//		for(i = (p1_offset>>2)*32+31; i < (p1_offset>>2)*32; i=i-1)
-//  			p1_data[31-(i-(p1_offset>>2)*32-31)] <= r_hit_data[i];
-//  	end else begin
-//    	p1_data = 32'b0;
-	p1_data = (hit) ? r_hit_data[(p1_offset>>2)*32+31 -: 32] : 32'b0; 
-//    end
+	ffff = (p1_offset>>2)*32 + 31;
+	eeee = ffff - 31;
+	if(hit)	begin
+		for(a = ffff; a >= eeee; a = a-1) begin
+			$display(a);
+  			p1_data[a-(p1_offset>>2)*32] <= r_hit_data[a];
+		end
+  	end else begin
+    		p1_data = 32'b0;
+	end
 end
 
 
