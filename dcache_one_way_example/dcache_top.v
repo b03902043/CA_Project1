@@ -152,7 +152,7 @@ end
 
 
 // controller 
-always@(posedge clk_i or negedge rst_i) begin
+always@(negedge clk_i or negedge rst_i) begin
 	if(~rst_i) begin
 		state      <= STATE_IDLE;
 		mem_enable <= 1'b0;

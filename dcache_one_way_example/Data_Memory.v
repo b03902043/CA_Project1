@@ -41,7 +41,7 @@ assign	addr = addr_i>>5;
 assign	data_o = data;
 
 //Controller 
-always@(posedge clk_i or negedge rst_i) begin
+always@(negedge clk_i or negedge rst_i) begin
 	if(~rst_i) begin
 		count <= 4'b0;
 		ok <= 1'b0;
@@ -84,7 +84,7 @@ always@(posedge clk_i or negedge rst_i) begin
 end
 
 // Read Data       
-always@(posedge clk_i) begin
+always@(negedge clk_i) begin
     if(ok && !write_i) begin
 		data = memory[addr];
 	end
